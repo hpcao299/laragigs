@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ListingController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Listing;
 
@@ -15,21 +16,7 @@ use App\Models\Listing;
 */
 
 // Get all listings
-Route::get('/', function () {
-    return view('listings', [
-        'listings' => Listing::all(),
-    ]);
-});
+Route::get('/', [ListingController::class, 'index']);
 
 // Get single listing by id
-Route::get('/listings/{id}', function ($id) {
-    $found_listing = Listing::find($id);
-
-    if (empty($found_listing)) {
-        return response()->view('listing')->setStatusCode(404);
-    } else {
-        return view('listing', [
-            'listing' => Listing::find($id)
-        ]);
-    }
-});
+Route::get('/listings/{id}', [ListingController::class, 'show']);

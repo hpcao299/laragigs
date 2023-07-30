@@ -1,8 +1,6 @@
-@extends('layout')
-
-@section('content')
-@include('partials._search')
-
+<x-layout>
+    @include('partials._search')
+    
     @empty ($listing)
         <h4 class="text-center text-red-500 text-xl mt-6">No listing found.</h4>\
     @else
@@ -56,5 +54,4 @@
             </x-card>
         </div>
     @endempty
-
-@endsection
+</x-layout>
