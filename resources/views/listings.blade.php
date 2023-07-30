@@ -1,21 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Laragigs</title>
-</head>
-<body>
-    <h1>{{$heading}}</h1>
+@extends('layout')
+
+@section('content')
+
+@include('partials._hero')
+@include('partials._search')
+
+<div class="lg:grid lg:grid-cols-2 gap-4 space-y-4 md:space-y-0 mx-4">
 
     @if (count($listings) == 0)
         <p>No listings found.</p>
     @else
         @foreach($listings as $listing)
-            <a href="/listings/{{$listing['id']}}"><h3>{{$listing['title']}}</h3></a>
-            <p>{{$listing['description']}}</p>
+            <x-listing-card :listing="$listing" />
         @endforeach
     @endif
-</body>
-</html>
+</div>
+
+@endsection
