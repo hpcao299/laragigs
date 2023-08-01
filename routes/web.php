@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Controllers\ListingController;
 use Illuminate\Support\Facades\Route;
-use App\Models\Listing;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ListingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,3 +35,20 @@ Route::put('/listings/{listing}', [ListingController::class, 'update']);
 
 // Delete listing
 Route::delete('/listings/{listing}', [ListingController::class, 'destroy']);
+
+// 
+
+// Show user registration form
+Route::get('/register', [UserController::class, 'create']);
+
+// Show login form
+Route::get('/login', [UserController::class, 'login']);
+
+// Register new user
+Route::post('/users', [UserController::class, 'store']);
+
+// Login user
+Route::post('/users/authenticate', [UserController::class, 'authenticate']);
+
+// Logout
+Route::post('/logout', [UserController::class, 'logout']);
