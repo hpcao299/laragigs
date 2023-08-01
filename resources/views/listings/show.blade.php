@@ -53,6 +53,8 @@
                 </div>
             </x-card>
 
+            @if ($listing->user_id == auth()->id())
+
             <x-card class="mt-4 p-2 flex space-x-6">
                 <a href="/listings/{{$listing->id}}/edit"><i class="fa-solid fa-pencil"></i> Edit</a>
                 <form method="POST" action="/listings/{{$listing->id}}">
@@ -63,6 +65,8 @@
                     </button>
                 </form>
             </x-card>
+
+            @endif
         </div>
     @endempty
 </x-layout>
