@@ -65,6 +65,11 @@ class ListingController extends Controller
     {
         $found_listing = Listing::find($id);
 
+        // Make sure logged in user is owner
+        if ($found_listing->user_id != auth()->id()) {
+            abort(403, 'Unauthorized');
+        }
+
         if (empty($found_listing)) {
             return response()->view('listings.edit')->setStatusCode(404);
         } else {
@@ -77,6 +82,11 @@ class ListingController extends Controller
     // Edit submit to update
     public function update(Request $request, Listing $listing)
     {
+        // Make sure logged in user is owner
+        if ($listing->user_id != auth()->id()) {
+            abort(403, 'Unauthorized');
+        }
+
         $formFields = $request->validate([
             'title' => 'required',
             'company' => ['required'],
@@ -99,6 +109,11 @@ class ListingController extends Controller
     // Delete listing
     public function destroy(Listing $listing)
     {
+        // Make sure logged in user is owner
+        if ($listing->user_id != auth()->id()) {
+            abort(403, 'Unauthorized');
+        }
+
         $listing->delete();
 
         return redirect('/')->with('message', 'Listing deleted successfully!');
