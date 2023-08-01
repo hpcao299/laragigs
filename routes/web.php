@@ -21,6 +21,9 @@ Route::get('/', [ListingController::class, 'index']);
 // Show create listing form
 Route::get('/listings/create', [ListingController::class, 'create'])->middleware('auth');
 
+// Show manage listings page
+Route::get('/listings/manage', [ListingController::class, 'manage'])->middleware('auth');
+
 // Get single listing by id
 Route::get('/listings/{id}', [ListingController::class, 'show']);
 
@@ -35,6 +38,7 @@ Route::put('/listings/{listing}', [ListingController::class, 'update'])->middlew
 
 // Delete listing
 Route::delete('/listings/{listing}', [ListingController::class, 'destroy'])->middleware('auth');
+
 
 // 
 

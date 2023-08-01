@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -44,7 +45,7 @@ class User extends Authenticatable
     ];
 
     // Relationships with Listing
-    public function listing()
+    public function listings(): HasMany
     {
         return $this->hasMany(Listing::class, 'user_id');
     }
